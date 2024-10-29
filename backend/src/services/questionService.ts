@@ -3,10 +3,22 @@ import { Question } from '../entities/questionEntity';
 import { Answer } from '../entities/answerEntity';
 import { entityManager } from '../mikrorm';
 export class QuestionService {
+  getQuestions = async () => {
+    const em = entityManager();
+
+    if ('error' in em) {
+      return {};
+    }
+
+    const questions = await em.findAll(Question);
+
+    return questions;
+  };
+
   getQuestionWithAnswers = async (req: Request) => {
     const em = entityManager();
 
-    if('error' in em) {
+    if ('error' in em) {
       return {};
     }
 
@@ -16,8 +28,16 @@ export class QuestionService {
       return {};
     }
 
-    const question = await em.findOne(Question, { uuid: questionId });
-    const answers = await em.find(Answer, { question: { uuid: questionId } });
+    const question = await em.findOne(
+      Question,
+      { uuid: questionId },
+      { fields: ['uuid', 'question', 'category'] }
+    );
+    const answers = await em.find(
+      Answer,
+      { question: { uuid: questionId } },
+      { fields: ['uuid', 'answer', 'points'] }
+    );
 
     return { ...question, answers };
   };
@@ -25,7 +45,7 @@ export class QuestionService {
   addQuestion = async (req: Request) => {
     const em = entityManager();
 
-    if('error' in em) {
+    if ('error' in em) {
       return {};
     }
 
