@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { questionController } from '../controllers/questionController';
+import { QuestionController } from '../controllers/questionController';
 
 const router = Router();
+const questionController: QuestionController = new QuestionController(); 
 
-router.post('/add', questionController);
+router.get('/:questionId', questionController.getQuestionWithAnswers);
+router.post('/add', questionController.addQuestion);
 
 export default router;

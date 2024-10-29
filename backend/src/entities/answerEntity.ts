@@ -13,8 +13,9 @@ export class Answer extends CustomBaseEntity {
   @Property()
   points!: number;
 
-  constructor(answer: string, points: number) {
+  constructor(question: Question, answer: string, points: number) {
     super();
+    this.question = question;
     this.answer = answer;
     this.points = points;
   }

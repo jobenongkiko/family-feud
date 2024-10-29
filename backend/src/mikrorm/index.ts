@@ -14,3 +14,13 @@ export const mikroORMem: RequestHandler = async (_, __, next) => {
   const em: EntityManager = orm.em.fork();
   RequestContext.create(em, next);
 };
+
+export const entityManager = () => {
+  const em: EntityManager | undefined = RequestContext.getEntityManager();
+
+  if (!em) {
+    return {error: 'Entity manager not available'};
+  }
+
+  return em;
+}

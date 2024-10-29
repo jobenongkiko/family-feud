@@ -1,7 +1,24 @@
 import { RequestHandler } from 'express';
-import { questionService } from '../services/questionService';
+import { QuestionService } from '../services/questionService';
 
-export const questionController: RequestHandler = async (req, res) => {
-  const result = await questionService(req);
-  res.status(200).json(result);
-};
+export class QuestionController {
+  private questionService: QuestionService = new QuestionService();
+
+  getQuestionWithAnswers: RequestHandler = async (req, res) => {
+    try {
+      const result = await this.questionService.getQuestionWithAnswers(req);
+      res.status(200).json(result);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+
+  addQuestion: RequestHandler = async (req, res) => {
+    try {
+      const result = await this.questionService.addQuestion(req);
+      res.status(201).json(result);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+}
