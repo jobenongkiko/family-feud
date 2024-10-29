@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 431.74 42.09">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: url(#radial-gradient-2);
+      }
+
+      .cls-3 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-4 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="449.04" cy="6.26" fx="449.04" fy="6.26" r="52.58" gradientTransform="translate(362.02 -442.78) rotate(90) scale(1 23.36)" gradientUnits="userSpaceOnUse">
+      <stop offset=".02" stop-color="#00c0e3"/>
+      <stop offset=".06" stop-color="#05add7"/>
+      <stop offset=".14" stop-color="#1083bc"/>
+      <stop offset=".22" stop-color="#1964a9"/>
+      <stop offset=".28" stop-color="#1e519d"/>
+      <stop offset=".33" stop-color="#204b99"/>
+    </radialGradient>
+    <clipPath id="clippath">
+      <rect class="cls-1" width="431.74" height="42.09" rx="6.9" ry="6.9"/>
+    </clipPath>
+    <radialGradient id="radial-gradient-2" cx="894.69" cy="417.07" fx="894.69" fy="417.07" r="46.71" gradientTransform="translate(-969.84 -85.58) scale(1.33 .31)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00c0e3"/>
+      <stop offset=".09" stop-color="#01bbdf" stop-opacity=".96"/>
+      <stop offset=".25" stop-color="#04aed7" stop-opacity=".85"/>
+      <stop offset=".44" stop-color="#0a98ca" stop-opacity=".66"/>
+      <stop offset=".67" stop-color="#127bb7" stop-opacity=".41"/>
+      <stop offset=".93" stop-color="#1d559f" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#204b99" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
+  <g>
+    <g id="Layer_1">
+      <g>
+        <rect class="cls-3" width="431.74" height="42.09" rx="6.9" ry="6.9"/>
+        <g class="cls-4">
+          <ellipse class="cls-2" cx="216.88" cy="40.47" rx="74.92" ry="13.36"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

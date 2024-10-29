@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primaryBlue: '#151c39'
+      },
+      animation: {
+        'spin-slow': 'spin 84s linear infinite', // Adjust the duration as needed
+      },
+    },
   },
   plugins: [],
 }
