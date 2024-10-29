@@ -1,12 +1,10 @@
 import { useGetQuestionWithAnswerQuery } from '../hooks/questionHook';
 import { useParams } from 'react-router-dom';
 
-type Props = {};
-
-const MainGame = (props: Props) => {
+const MainGame = () => {
     const { questionId } = useParams();
     const { data: question, isLoading } =
-        useGetQuestionWithAnswerQuery(questionId);
+        useGetQuestionWithAnswerQuery(questionId!);
 
     if (isLoading) return <span>Loading...</span>;
     return (
