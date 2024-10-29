@@ -2,14 +2,15 @@ import { MikroORM } from "@mikro-orm/core";
 import { Question } from './entities/questionEntity';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { Answer } from './entities/answerEntity';
+import { DB_CONFIG } from './config';
 
 export default {
   entities: [Question, Answer],
-  dbName: process.env.DB_NAME!,
+  dbName: DB_CONFIG.dbName!,
   driver: PostgreSqlDriver,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT!),
-  debug: process.env.NODE_ENV !== 'production',
+  user: DB_CONFIG.user,
+  password: DB_CONFIG.password,
+  host: DB_CONFIG.host,
+  port: DB_CONFIG.port!,
+  debug: DB_CONFIG.debug,
 } as Parameters<typeof MikroORM.init>[0];

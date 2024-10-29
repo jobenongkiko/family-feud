@@ -3,13 +3,12 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import routes from './routes';
-import { mikroORMem } from './mikroorm';
+import { mikroORMem } from './mikrorm';
 
 const app = express();
 const port = process.env.PORT;
 
-
-async function startServer() {  
+const startServer = async () => {  
   app.disable('x-powered-by');
   app.use(helmet());
   app.use(cors());
