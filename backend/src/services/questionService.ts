@@ -10,7 +10,7 @@ export class QuestionService {
       return {};
     }
 
-    const questions = await em.findAll(Question);
+    const questions = await em.findAll(Question, { fields: ['uuid', 'question', 'category'] });
 
     return questions;
   };
