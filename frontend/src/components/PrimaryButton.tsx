@@ -1,4 +1,4 @@
-import SmallBox from '../assets/small-box.svg';
+import SmallBox from '../assets/small-box.png';
 import { useNavigate } from 'react-router-dom';
 type Props = {
     value: string;
