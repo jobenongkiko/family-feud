@@ -5,9 +5,9 @@ const MainMenu = () => {
     return (
         <div>
             <section className="flex justify-center">
-                <img className="h-[30rem]" src={Logo} alt="main logo" />
+                <img className="h-[37rem]" src={Logo} alt="main logo" />
             </section>
-            <section className="flex flex-col gap-12 lg:flex-row lg:gap-24 w-full mt-24 justify-center items-center">
+            <section className="flex flex-col gap-12 lg:flex-row lg:gap-12 w-full justify-center items-center">
                 <PrimaryButton value='CHOOSE A QUESTION' path='/question'/>
                 <PrimaryButton value='RANDOM QUESTION' path='/question'/>
             </section>

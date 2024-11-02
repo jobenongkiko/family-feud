@@ -7,10 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primaryBlue: '#151c39'
+        primaryBlue: '#151c39',
+        numberBlue: '#233f80',
       },
       animation: {
-        'spin-slow': 'spin 84s linear infinite', // Adjust the duration as needed
+        'spin-slow': 'spin 84s linear infinite',
       },
     },
   },
