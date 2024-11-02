@@ -1,5 +1,5 @@
-import SmallCircle from './assets/circle-small.svg';
-import LargeCircle from './assets/circle-large.svg';
+import SmallCircle from '@/assets/img/circle-small.svg';
+import LargeCircle from '@/assets/img/circle-large.svg';
 
 type AnimatedElementProps = {
     additionalClassNames: string;

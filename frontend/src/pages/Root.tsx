@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router';
-import AnimatedBackground from './AnimatedBackground';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 const Root = () => {
     return (

@@ -1,4 +1,4 @@
-import SmallBox from '../assets/small-box.png';
+import SmallBox from '@/assets/img/small-box.png';
 import classnames from 'classnames';
 
 type Props = {

@@ -17,7 +17,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    },
+    "jsx": "react-jsx",
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "src/**/*"]
 }

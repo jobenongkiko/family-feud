@@ -1,4 +1,4 @@
-import BigBox from '../assets/big-box.png';
+import BigBox from '@/assets/img/big-box.png';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {

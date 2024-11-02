@@ -1,7 +1,7 @@
-import { useGetQuestionsQuery } from '../hooks/questionHook';
-import Logo from '../assets/logo.svg';
-import QuestionButton from '../components/QuestionButton';
-import Loader from '../components/Loader';
+import { useGetQuestionsQuery } from '@/hooks/api-hooks/questionHook';
+import Logo from '@/assets/img/logo.svg';
+import QuestionButton from '@/components/QuestionButton';
+import Loader from '@/components/Loader';
 
 const Questions = () => {
     const { data: questions, isLoading } = useGetQuestionsQuery();
