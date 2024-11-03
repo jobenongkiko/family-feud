@@ -7,7 +7,7 @@ export class AnswerService {
     const em = entityManager();
 
     if ('error' in em) {
-      return {};
+      throw new Error(em.error);
     }
     const { question, answer, points } = req.body;
 

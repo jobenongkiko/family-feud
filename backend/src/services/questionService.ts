@@ -7,7 +7,7 @@ export class QuestionService {
     const em = entityManager();
 
     if ('error' in em) {
-      return {};
+      throw new Error(em.error);
     }
 
     const questions = await em.findAll(Question, { fields: ['uuid', 'question', 'category'] });
@@ -19,13 +19,13 @@ export class QuestionService {
     const em = entityManager();
 
     if ('error' in em) {
-      return {};
+      throw new Error(em.error);
     }
 
     const { questionId } = req.params;
 
     if (!questionId) {
-      return {};
+      throw new Error('No such question');
     }
 
     const question = await em.findOne(
@@ -46,7 +46,7 @@ export class QuestionService {
     const em = entityManager();
 
     if ('error' in em) {
-      return {};
+      throw new Error(em.error);
     }
 
     const { question, category } = req.body;

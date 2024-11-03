@@ -194,6 +194,26 @@
           "nullable": false,
           "mappedType": "json"
         },
+        "room_name": {
+          "name": "room_name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "question_uuid": {
+          "name": "question_uuid",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
         "socket_id": {
           "name": "socket_id",
           "type": "varchar(255)",
@@ -220,7 +240,20 @@
         }
       ],
       "checks": [],
-      "foreignKeys": {},
+      "foreignKeys": {
+        "room_question_uuid_foreign": {
+          "constraintName": "room_question_uuid_foreign",
+          "columnNames": [
+            "question_uuid"
+          ],
+          "localTableName": "public.room",
+          "referencedColumnNames": [
+            "uuid"
+          ],
+          "referencedTableName": "public.question",
+          "updateRule": "cascade"
+        }
+      },
       "nativeEnums": {}
     }
   ],

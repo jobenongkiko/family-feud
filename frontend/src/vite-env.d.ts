@@ -20,8 +20,19 @@ interface QuestionWithAnswers {
     answers: Answer[];
 }
 
+interface Room {
+    uuid: string;
+    roomName: string;
+    question: string;
+    socketId: string;
+}
+
 interface AnswerSocketConstants {
     EMIT: {
+        ROOM: {
+            CREATE_ROOM: string;
+            JOIN_ROOM: string;
+        };
         ANSWER: {
             OPEN_ANSWER: string;
         };

@@ -17,7 +17,7 @@ const Questions = () => {
                         <QuestionButton
                             value={question.question}
                             key={question.uuid}
-                            path={`/game/question/${question.uuid}`}
+                            path={`/game/question/${question.uuid}?isAdmin=true`}
                         />
                     ))}
                 </div>

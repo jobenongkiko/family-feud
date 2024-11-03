@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainMenu from '@/pages/MainMenu';
 import Questions from '@/pages/admin/Questions';
 import '@/index.css';
-import MainGame from '@/pages/player/MainGame';
+import MainGame from '@/pages/MainGame';
 import Root from '@/pages/Root';
 import JoinRoom from '@/pages/player/JoinRoom';
 import { SocketProvider } from '@/contexts/SocketContext';

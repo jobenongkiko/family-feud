@@ -28,6 +28,7 @@
     "@mikro-orm/migrations": "^6.3.13",
     "@mikro-orm/postgresql": "^6.3.13",
     "@types/cors": "^2.8.17",
+    "axios": "^1.7.7",
     "cors": "^2.8.5",
     "dayjs": "^1.11.13",
     "express": "^4.21.1",

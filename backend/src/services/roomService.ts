@@ -7,26 +7,84 @@ export class RoomService {
     const em = entityManager();
 
     if ('error' in em) {
-      return {};
+      throw new Error(em.error);
     }
 
-    const rooms = await em.findAll(Room, { fields: ['uuid', 'socketId'] });
+    const rooms = await em.findAll(Room, { fields: ['uuid', 'socketId', 'roomName', 'question'] });
 
     return rooms;
+  };
+
+  getRoom = async (req: Request) => {
+    const em = entityManager();
+
+    if ('error' in em) {
+      throw new Error(em.error);
+    }
+
+    const { roomId } = req.params;
+
+    if (!roomId) {
+      throw new Error('Room ID requred');
+    }
+
+    const room = await em.find(Room, roomId);
+
+    if (room.length === 0) {
+      throw new Error('No such room');
+    }
+
+    return room;
   };
 
   addRoom = async (req: Request) => {
     const em = entityManager();
 
     if ('error' in em) {
-      return {};
+      throw new Error(em.error);
     }
 
-    const { socketId } = req.body;
+    const { socketId, roomName, questionId } = req.body;
 
-    const newRoom = new Room(socketId);
+    if (!socketId || !roomName || !questionId) {
+      throw new Error(
+        'Needs socketId, roomName, questionId (temporary validation)'
+      );
+    }
+
+    const existingRoom = await em.findOne(Room, { roomName });
+
+    if (existingRoom) {
+      throw new Error('Room name already exists');
+    }
+
+    const newRoom = new Room(roomName, questionId, socketId);
     em.persist(newRoom);
     await em.flush();
     return newRoom;
+  };
+
+  deleteRoom = async (req: Request) => {
+    const em = entityManager();
+
+    if ('error' in em) {
+      throw new Error(em.error);
+    }
+
+    const { socketId } = req.params;
+
+    if (!socketId) {
+      throw new Error('Room ID required');
+    }
+
+    const room = await em.findOne(Room, { socketId });
+
+    if (!room) {
+      throw new Error('No such room');
+    }
+
+    em.remove(room);
+    await em.flush();
+    return room;
   };
 }

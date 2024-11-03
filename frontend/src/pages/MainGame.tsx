@@ -8,19 +8,41 @@ import { usePlayAudio } from '@/hooks/client-hooks/useAudioPlayer';
 import mainTheme from '@/assets/audio/main-theme.mp3';
 import { useSocket } from '@/contexts/SocketContext';
 import { SOCKETS } from '@/constants';
+import { useEffect } from 'react';
 
 const MainGame = () => {
     const { questionId } = useParams();
+
     const { data: question, isLoading } = useGetQuestionWithAnswerQuery(
         questionId!,
     );
     const socket = useSocket();
     const [searchParams] = useSearchParams();
 
+    useEffect(() => {
+        if (searchParams.get('isAdmin')) {
+            socket.emit(
+                SOCKETS.EMIT.ROOM.CREATE_ROOM,
+                'testRoom',
+                questionId,
+                searchParams.get('isAdmin'),
+            );
+        } else {
+            socket.emit(
+                SOCKETS.EMIT.ROOM.JOIN_ROOM,
+                searchParams.get('testRoom'),
+            );
+        }
+    }, []);
+
     usePlayAudio(mainTheme).play();
 
     const handleOpenAnswer: (answerId: string) => void = (answerId) => {
-        socket.emit(SOCKETS.EMIT.ANSWER.OPEN_ANSWER, answerId);
+        socket.emit(
+            SOCKETS.EMIT.ANSWER.OPEN_ANSWER,
+            answerId,
+            searchParams.get('socketId'),
+        );
     };
 
     if (isLoading) return <Loader />;

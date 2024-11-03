@@ -13,9 +13,27 @@ export class RoomController {
     }
   }
 
+  getRoom: RequestHandler = async (req, res) => {
+    try {
+      const result = await this.roomService.getRoom(req);
+      res.status(200).json(result);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  }
+
   addRoom: RequestHandler = async (req, res) => {
     try {
       const result = await this.roomService.addRoom(req);
+      res.status(201).json(result);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+
+  deleteRoom: RequestHandler = async (req, res) => {
+    try {
+      const result = await this.roomService.deleteRoom(req);
       res.status(201).json(result);
     } catch (error: any) {
       res.status(400).json({ error: error.message });
