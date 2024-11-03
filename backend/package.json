@@ -8,7 +8,7 @@
     "migrate:up": "mikro-orm migration:up",
     "migrate:create": "mikro-orm migration:create",
     "migrate:down": "mikro-orm migration:down",
-    "build": "tsc",
+    "build": "yarn && tsc && yarn migrate:create && yarn migrate:up",
     "start": "node dist/index.js"
   },
   "devDependencies": {
