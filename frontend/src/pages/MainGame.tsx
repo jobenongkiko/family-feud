@@ -23,14 +23,14 @@ const MainGame = () => {
         if (searchParams.get('isAdmin')) {
             socket.emit(
                 SOCKETS.EMIT.ROOM.CREATE_ROOM,
-                'testRoom',
+                questionId,
                 questionId,
                 searchParams.get('isAdmin'),
             );
         } else {
             socket.emit(
                 SOCKETS.EMIT.ROOM.JOIN_ROOM,
-                searchParams.get('testRoom'),
+                searchParams.get(questionId!),
             );
         }
     }, []);
