@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "concurrently \"tsc -w\" \"nodemon ./dist/index.js\"",
-    "migrate": "mikro-orm migration:up",
+    "migrate:up": "mikro-orm migration:up",
+    "migrate:create": "mikro-orm migration:create",
+    "migrate:down": "mikro-orm migration:down",
     "build": "tsc",
     "start": "node dist/index.js"
   },
