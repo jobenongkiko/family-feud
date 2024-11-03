@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2023"],
+    "lib": ["ES2023", "DOM"],  // Add "DOM" here
     "module": "ESNext",
     "skipLibCheck": true,
 
@@ -22,7 +22,7 @@
     "paths": {
       "@/*": ["*"]
     },
-    "jsx": "react-jsx",
+    "jsx": "react-jsx"
   },
   "include": ["vite.config.ts", "src/**/*"]
 }

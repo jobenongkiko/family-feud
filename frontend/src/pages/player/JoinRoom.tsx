@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-const JoinRoom = (props: Props) => {
+const JoinRoom = () => {
   return (
     <input className='w-32'/>
   )

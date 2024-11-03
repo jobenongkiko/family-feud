@@ -1,25 +1,44 @@
-import Loader from '@/components/Loader';
+import Loader from '@/components/root/Loader';
 import { useGetQuestionWithAnswerQuery } from '@/hooks/api-hooks/questionHook';
 import { useParams, useSearchParams } from 'react-router-dom';
 import mainFrame from '@/assets/img/main-frame.png';
-import Answer from '@/components/Answer';
-import ScoreBox from '@/components/ScoreBox';
-import { usePlayAudio } from '@/hooks/react-hooks/useAudioPlayer';
+import Answer from '@/components/player/Answer';
+import ScoreBox from '@/components/player/ScoreBox';
+import { usePlayAudio } from '@/hooks/client-hooks/useAudioPlayer';
 import mainTheme from '@/assets/audio/main-theme.mp3';
+import { useSocket } from '@/contexts/SocketContext';
+import { SOCKETS } from '@/constants';
 
 const MainGame = () => {
     const { questionId } = useParams();
     const { data: question, isLoading } = useGetQuestionWithAnswerQuery(
         questionId!,
     );
+    const socket = useSocket();
     const [searchParams] = useSearchParams();
 
     usePlayAudio(mainTheme).play();
 
+    const handleOpenAnswer: (answerId: string) => void = (answerId) => {
+        socket.emit(SOCKETS.EMIT.ANSWER.OPEN_ANSWER, answerId);
+    };
+
     if (isLoading) return <Loader />;
 
     return searchParams.get('isAdmin') ? (
-        <span>asd</span>
+        <div className="flex flex-col text-red-700">
+            {question?.answers.map((answer: Answer) => (
+                <button
+                    key={`button-${answer.uuid}`}
+                    className="text-4xl"
+                    onClick={() => {
+                        handleOpenAnswer(answer.uuid);
+                    }}
+                >
+                    {answer.answer}
+                </button>
+            ))}
+        </div>
     ) : (
         <div
             className="flex justify-center items-center h-screen w-screen relative bg-contain bg-center bg-no-repeat"
@@ -33,12 +52,11 @@ const MainGame = () => {
                     <div className="flex flex-col flex-1 gap-1" key={i}>
                         {Array.from({ length: 4 }, (_, j) => {
                             const currentIndex = j + (i === 1 ? 4 : 0);
-                            const answer =
-                                question?.answers[currentIndex]?.answer;
+                            const answer = question?.answers[currentIndex];
                             return (
                                 <Answer
                                     key={currentIndex}
-                                    value={answer || '\u00A0'}
+                                    answer={answer}
                                     index={currentIndex + 1}
                                 />
                             );

@@ -1,6 +1,6 @@
 import axios from 'axios';
-const URL = import.meta.env.VITE_AXIOS_BASE_URL;
-axios.defaults.baseURL = URL;
+import { API_CONFIG } from '../configs';
+axios.defaults.baseURL = API_CONFIG.URL;
 
 export const getQuestions = async () => {
   const res = await axios.get<Question[]>(`/question`);

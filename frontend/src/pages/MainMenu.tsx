@@ -1,7 +1,7 @@
 import Logo from '@/assets/img/logo.svg';
-import PrimaryButton from '@/components/PrimaryButton';
+import PrimaryButton from '@/components/root/PrimaryButton';
 import mainTheme from '@/assets/audio/main-theme.mp3';
-import { usePlayAudio } from '@/hooks/react-hooks/useAudioPlayer';
+import { usePlayAudio } from '@/hooks/client-hooks/useAudioPlayer';
 import { useNavigate } from 'react-router-dom';
 
 const MainMenu = () => {
