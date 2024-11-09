@@ -16,15 +16,13 @@ const setupSocket = (server: Server) => {
   io.on('connection', async (socket) => {
     console.log(`A user connected: ${socket.id}`);
 
-    socket.on('create-room', async (roomName, questionId, isAdmin) => {
-      if (isAdmin) {
-        await axios.post('room/add', {
-          socketId: socket.id,
-          roomName,
-          questionId
-        });
-        socket.join(roomName);
-      }
+    socket.on('create-room', async (roomName, questionId) => {
+      await axios.post('room/add', {
+        socketId: socket.id,
+        roomName,
+        questionId
+      });
+      socket.join(roomName);
     });
 
     socket.on('join-room', (room) => {
