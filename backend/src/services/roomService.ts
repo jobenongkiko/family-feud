@@ -52,12 +52,6 @@ export class RoomService {
       );
     }
 
-    const existingRoom = await em.findOne(Room, { roomName });
-
-    if (existingRoom) {
-      throw new Error('Room name already exists');
-    }
-
     const newRoom = new Room(roomName, questionId, socketId);
     em.persist(newRoom);
     await em.flush();
