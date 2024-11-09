@@ -1,27 +1,32 @@
 import { SOCKETS } from '@/constants';
-import { useSearchParams } from 'react-router-dom';
-import { Socket } from 'socket.io-client';
+import { useEffect } from 'react';
+import { useSocket } from '@/contexts/SocketContext';
 
 type Props = {
     question: QuestionWithAnswers;
-    socket: Socket;
 };
 
-const AdminMainGame = ({ question, socket }: Props) => {
-    const [searchParams] = useSearchParams();
+const AdminMainGame = ({ question }: Props) => {
+    const socket = useSocket();
     const handleOpenAnswer: (answerId: string) => void = (answerId) => {
-        socket.emit(
-            SOCKETS.EMIT.ANSWER.OPEN_ANSWER,
-            answerId,
-            searchParams.get('socketId'),
-        );
+        socket.emit(SOCKETS.EMIT.ANSWER.OPEN_ANSWER, answerId, question.uuid);
     };
+
+    useEffect(() => {
+        socket.emit(
+            SOCKETS.EMIT.ROOM.CREATE_ROOM,
+            question.uuid,
+            question.uuid,
+        );
+    }, [question]);
+
     return (
-        <div className="flex flex-col text-red-700">
+        <div className="flex flex-col gap-2">
+            <h1 className='text-5xl text-blue-600 self-center'>{question.question}</h1>
             {question?.answers.map((answer: Answer) => (
                 <button
                     key={`button-${answer.uuid}`}
-                    className="text-4xl"
+                    className="text-4xl text-red-700 border"
                     onClick={() => {
                         handleOpenAnswer(answer.uuid);
                     }}
