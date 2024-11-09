@@ -23,7 +23,7 @@ const JoinRoom = () => {
                             )
                         }
                     >
-                        {room.roomName}
+                        {room.uuid}
                     </span>
                 ))}
         </div>
