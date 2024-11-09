@@ -21,12 +21,12 @@ const AdminMainGame = ({ question }: Props) => {
     }, [question]);
 
     return (
-        <div className="flex flex-col gap-2">
-            <h1 className='text-5xl text-blue-600 self-center'>{question.question}</h1>
+        <div className="flex flex-col gap-2 items-center text-white">
+            <h1 className='text-5xl'>{question.question}</h1>
             {question?.answers.map((answer: Answer) => (
                 <button
                     key={`button-${answer.uuid}`}
-                    className="text-4xl text-red-700 border"
+                    className="text-4xl border w-fit"
                     onClick={() => {
                         handleOpenAnswer(answer.uuid);
                     }}
