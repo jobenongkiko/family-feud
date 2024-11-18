@@ -1,26 +1,40 @@
 import mainFrame from '@/assets/img/main-frame.png';
 import Answer from '@/components/player/Answer';
 import ScoreBox from '@/components/player/ScoreBox';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { SOCKETS } from '@/constants';
 import { useSocket } from '@/contexts/SocketContext';
+import Cross from '@/components/player/Cross';
 
 type Props = {
     question: QuestionWithAnswers;
 };
 
 const PlayerMainGame = ({ question }: Props) => {
+    const [wrongCount, setWrongCount] = useState<number>(0);
     const socket = useSocket();
+
+    const handleSetWrongCount = () => {
+        wrongCount < 3
+            ? setWrongCount((prevCount) => prevCount + 1)
+            : setWrongCount(1);
+    };
 
     useEffect(() => {
         socket.emit(SOCKETS.EMIT.ROOM.JOIN_ROOM, question.uuid);
-    }, [question]);
+
+        socket.on(SOCKETS.LISTEN.ANSWER.WRONG_ANSWER, handleSetWrongCount);
+        return () => {
+            socket.off(SOCKETS.LISTEN.ANSWER.WRONG_ANSWER, handleSetWrongCount);
+        };
+    }, [question, socket, wrongCount]);
 
     return (
         <div
             className="flex justify-center items-center h-screen w-screen relative bg-[length:83rem] bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${mainFrame})` }}
         >
+            {wrongCount > 0 && <Cross count={wrongCount} />}
             <section
                 className="absolute flex gap-1 w-[40.5rem] h-[19.5rem]"
                 style={{ aspectRatio: '@ 1' }}

@@ -35,11 +35,13 @@ interface AnswerSocketConstants {
         };
         ANSWER: {
             OPEN_ANSWER: string;
+            WRONG_ANSWER: string;
         };
     };
     LISTEN: {
         ANSWER: {
             OPEN_ANSWER: string;
+            WRONG_ANSWER: string;
         };
     };
 }

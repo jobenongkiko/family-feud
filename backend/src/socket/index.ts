@@ -41,6 +41,11 @@ const setupSocket = (server: Server) => {
     socket.on('open-answer', (answerId, room) => {
       socket.to(room).emit('answer-opened', answerId);
     });
+
+    socket.on('wrong-answer', (room) => {
+      console.log(room)
+      socket.to(room).emit('wrong-answer-opened');
+    });
   });
 
   return io;

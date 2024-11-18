@@ -10,8 +10,17 @@ export default {
         primaryBlue: '#151c39',
         numberBlue: '#233f80',
       },
+      keyframes: {
+        scaleFade: {
+          '0%': { transform: 'scale(0)', opacity: '1' },
+          '10%': { transform: 'scale(1)', opacity: '1' },
+          '90%': { transform: 'scale(1)', opacity: '1' },
+          '100%': { transform: 'scale(1)', opacity: '0' },
+        },
+      },
       animation: {
         'spin-slow': 'spin 84s linear infinite',
+        'scale-fade': 'scaleFade 3s forwards',
       },
     },
   },
