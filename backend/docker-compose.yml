@@ -1,0 +1,28 @@
+services:
+
+  database:
+    image: postgres:14
+    container_name: familyfeud-db
+    environment:
+      POSTGRES_DB: family_feud
+      POSTGRES_USER: familyfeud
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: 
+      dockerfile: Dockerfile
+    container_name: familyfeud-backend
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+    
+volumes:
+  postgres_data:
+    driver: local

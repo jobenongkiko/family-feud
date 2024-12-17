@@ -8,7 +8,7 @@
     "migrate:up": "mikro-orm migration:up",
     "migrate:create": "mikro-orm migration:create",
     "migrate:down": "mikro-orm migration:down",
-    "build": "yarn && tsc && yarn migrate:create && yarn migrate:up",
+    "build": "tsc && yarn migrate:create && yarn migrate:up",
     "start": "node dist/index.js"
   },
   "devDependencies": {
@@ -29,6 +29,7 @@
     "@mikro-orm/postgresql": "^6.3.13",
     "@types/cors": "^2.8.17",
     "axios": "^1.7.7",
+    "backend": "file:",
     "cors": "^2.8.5",
     "dayjs": "^1.11.13",
     "express": "^4.21.1",
