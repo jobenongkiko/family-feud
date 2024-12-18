@@ -1,4 +1,4 @@
-import { MikroORM } from "@mikro-orm/core";
+import { MikroORM } from '@mikro-orm/core';
 import { Question } from './entities/questionEntity';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { Answer } from './entities/answerEntity';
