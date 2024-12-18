@@ -46,9 +46,21 @@ export class RoomService {
 
     const { socketId, roomName, questionId } = req.body;
 
-    if (!socketId || !roomName || !questionId) {
+    if (!socketId) {
       throw new Error(
-        'Needs socketId, roomName, questionId (temporary validation)'
+        'Needs socketId'
+      );
+    }
+
+    if (!roomName) {
+      throw new Error(
+        'Needs roomName'
+      );
+    }
+
+    if (!questionId) {
+      throw new Error(
+        'Needs questionId'
       );
     }
 
