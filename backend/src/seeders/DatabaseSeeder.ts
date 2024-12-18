@@ -2,7 +2,6 @@ import type { EntityManager } from '@mikro-orm/core';
 import { Seeder } from '@mikro-orm/seeder';
 import { Question } from '../entities/questionEntity';
 import { Answer } from '../entities/answerEntity';
-import { Room } from '../entities/roomEntity';
 
 export class DatabaseSeeder extends Seeder {
   async run(em: EntityManager): Promise<void> {
@@ -141,9 +140,6 @@ export class DatabaseSeeder extends Seeder {
         );
         await em.persistAndFlush(answer);
       }
-
-      const room = new Room(question.question, question, 'socket-id');
-      await em.persistAndFlush(room);
     }
   }
 }
