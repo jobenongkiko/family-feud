@@ -11,7 +11,7 @@ const Cross = ({ count }: Props) => {
 
     return (
         <div className="absolute z-50 flex animate-scale-fade" key={count}>
-            {Array.from({ length: count }, (_, index) => (
+            {Array.from({ length: count < 4 ? count : 1 }, (_, index) => (
                 <img
                     key={count + '-' + index}
                     className="size-72"

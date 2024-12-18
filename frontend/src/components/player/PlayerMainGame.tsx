@@ -14,13 +14,15 @@ const PlayerMainGame = ({ question }: Props) => {
     const [wrongCount, setWrongCount] = useState<number>(0);
     const socket = useSocket();
 
-    const handleSetWrongCount = () => {
-        wrongCount < 3
-            ? setWrongCount((prevCount) => prevCount + 1)
-            : setWrongCount(1);
-    };
-
     useEffect(() => {
+        const handleSetWrongCount = () => {
+            if (wrongCount < 4) {
+                setWrongCount((prevCount) => prevCount + 1);
+            } else {
+                setWrongCount(1);
+            }
+        };
+
         socket.emit(SOCKETS.EMIT.ROOM.JOIN_ROOM, question.uuid);
 
         socket.on(SOCKETS.LISTEN.ANSWER.WRONG_ANSWER, handleSetWrongCount);
@@ -56,9 +58,9 @@ const PlayerMainGame = ({ question }: Props) => {
                 ))}
             </section>
             <div className="absolute w-[77.5rem] h-[50rem]">
-                <ScoreBox className="right-[6.3%] top-[43%]" value={100} />
-                <ScoreBox className="left-[6.3%] top-[43%]" value={100} />
-                <ScoreBox className="right-[44.8%] top-[11%]" value={100} />
+                <ScoreBox className="right-[6.3%] top-[43%]" value={0} />
+                <ScoreBox className="left-[6.3%] top-[43%]" value={0} />
+                <ScoreBox className="right-[44.8%] top-[11%]" value={0} />
             </div>
         </div>
     );

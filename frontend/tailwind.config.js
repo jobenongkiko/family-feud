@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         primaryBlue: '#151c39',
+        primaryOrange: '#f89c1e',
         numberBlue: '#233f80',
       },
       keyframes: {

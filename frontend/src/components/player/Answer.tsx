@@ -17,21 +17,21 @@ const Answer = ({ answer, index }: Props) => {
 
     const socket = useSocket();
 
-    const handleAnswerOpened = (answerId: string) => {
-        console.log(`Answer opened: ${answerId}`);
-        if (answer && answerId === answer.uuid) {
-            setIsOpen(true);
-            play();
-        }
-    };
-
+    
     useEffect(() => {
+        const handleAnswerOpened = (answerId: string) => {
+            if (answer && answerId === answer.uuid) {
+                setIsOpen(true);
+                play();
+            }
+        };
+        
         socket.on(SOCKETS.LISTEN.ANSWER.OPEN_ANSWER, handleAnswerOpened);
 
         return () => {
             socket.off(SOCKETS.LISTEN.ANSWER.OPEN_ANSWER, handleAnswerOpened);
         };
-    }, [socket, index, play]);
+    }, [socket, index, play, answer]);
 
     return (
         <div
