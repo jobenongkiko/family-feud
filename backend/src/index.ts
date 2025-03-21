@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import routes from './routes';
 import { mikroORMem } from './mikrorm';
-import http from 'http'; // Import http module
+import http from 'http';
 import setupSocket from './socket';
 
 const app = express();
