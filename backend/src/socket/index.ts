@@ -42,8 +42,11 @@ const setupSocket = (server: Server) => {
     });
 
     socket.on('wrong-answer', (room) => {
-      console.log(room)
       socket.to(room).emit('wrong-answer-opened');
+    });
+
+    socket.on('toggle-single-wrong', (room) => {
+      socket.to(room).emit('single-wrong-toggled');
     });
   });
 

@@ -27,11 +27,17 @@ const AdminMainGame = ({ question }: Props) => {
         | undefined = () => {
         socket.emit(SOCKETS.EMIT.ANSWER.WRONG_ANSWER, question.uuid);
 
-        if (wrongCount < 4) {
+        if (wrongCount < 3) {
             setWrongCount((prevCount) => prevCount + 1);
         } else {
             setWrongCount(1);
         }
+    };
+
+    const handleToggleSingleWrong:
+        | React.MouseEventHandler<HTMLImageElement>
+        | undefined = () => {
+        socket.emit(SOCKETS.EMIT.ANSWER.SINGLE_WRONG_ANSWER, question.uuid);
     };
 
     useEffect(() => {
@@ -103,9 +109,10 @@ const AdminMainGame = ({ question }: Props) => {
                         </div>
                         <div>
                             <img
-                                className="h-[4.5rem]"
+                                className="h-[4.5rem] cursor-pointer hover:scale-110 active:scale-100"
                                 alt="cross"
-                                src={wrongCount > 3 ? cross : grayCross}
+                                src={cross}
+                                onClick={handleToggleSingleWrong}
                             />
                         </div>
                     </section>

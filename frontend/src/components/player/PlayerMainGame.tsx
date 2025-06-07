@@ -12,24 +12,45 @@ type Props = {
 
 const PlayerMainGame = ({ question }: Props) => {
     const [wrongCount, setWrongCount] = useState<number>(0);
+    const [crossToggler, setCrossToggler] = useState<number>(0);
     const socket = useSocket();
 
     useEffect(() => {
+        socket.emit(SOCKETS.EMIT.ROOM.JOIN_ROOM, question.uuid);
+    }, [question, socket]);
+
+    useEffect(() => {
         const handleSetWrongCount = () => {
-            if (wrongCount < 4) {
+            if (wrongCount < 3) {
                 setWrongCount((prevCount) => prevCount + 1);
             } else {
                 setWrongCount(1);
             }
         };
 
-        socket.emit(SOCKETS.EMIT.ROOM.JOIN_ROOM, question.uuid);
-
         socket.on(SOCKETS.LISTEN.ANSWER.WRONG_ANSWER, handleSetWrongCount);
         return () => {
             socket.off(SOCKETS.LISTEN.ANSWER.WRONG_ANSWER, handleSetWrongCount);
         };
-    }, [question, socket, wrongCount]);
+    }, [wrongCount, socket]);
+
+    useEffect(() => {
+        const handleCrossToggler = () => {
+            setCrossToggler((prevCount) => prevCount + 1);
+        }
+
+        socket.on(
+            SOCKETS.LISTEN.ANSWER.SINGLE_WRONG_ANSWER,
+            handleCrossToggler
+        );
+
+        return () => {
+            socket.off(
+                SOCKETS.LISTEN.ANSWER.SINGLE_WRONG_ANSWER,
+                handleCrossToggler
+            );
+        };
+    }, [crossToggler, socket]);
 
     return (
         <div
@@ -37,6 +58,8 @@ const PlayerMainGame = ({ question }: Props) => {
             style={{ backgroundImage: `url(${mainFrame})` }}
         >
             {wrongCount > 0 && <Cross count={wrongCount} />}
+            {crossToggler > 0 && <Cross count={1} key={crossToggler}/>}
+
             <section
                 className="absolute flex gap-1 w-[40.5rem] h-[19.5rem]"
                 style={{ aspectRatio: '@ 1' }}
@@ -58,9 +81,9 @@ const PlayerMainGame = ({ question }: Props) => {
                 ))}
             </section>
             <div className="absolute w-[77.5rem] h-[50rem]">
-                <ScoreBox className="right-[6.3%] top-[43%]" value={0} />
-                <ScoreBox className="left-[6.3%] top-[43%]" value={0} />
-                <ScoreBox className="right-[44.8%] top-[11%]" value={0} />
+                <ScoreBox className="right-[6.3%] top-[43%]" value={'-'} />
+                <ScoreBox className="left-[6.3%] top-[43%]" value={'-'} />
+                <ScoreBox className="right-[44.8%] top-[11%]" value={'-'} />
             </div>
         </div>
     );

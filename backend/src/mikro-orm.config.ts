@@ -13,5 +13,5 @@ export default {
   password: DB_CONFIG.password,
   host: DB_CONFIG.host,
   port: DB_CONFIG.port!,
-  debug: DB_CONFIG.debug,
+  // debug: DB_CONFIG.debug,
 } as Parameters<typeof MikroORM.init>[0];
