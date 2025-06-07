@@ -1,6 +1,6 @@
 type Props = {
     className: string;
-    value: number;
+    value: number | string; //temporarily disabled score
 };
 
 const ScoreBox = ({ className, value }: Props) => {
