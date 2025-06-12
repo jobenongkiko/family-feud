@@ -13,6 +13,10 @@ const server = http.createServer(app);
 
 const startServer = async () => {
   app.disable('x-powered-by');
+  app.use((_, res, next) => {
+    res.set('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet');
+    next();
+  });
   app.use(helmet());
   app.use(cors());
   app.use(express.json());
