@@ -4,8 +4,9 @@ import { RequestHandler } from "express";
 
 const configureMikroORM = async () => {
   const orm = await MikroORM.init(config);
-  const migrator = orm.getMigrator();
-  await migrator.up();
+  // disabled cuz I cant use migrations in supabase and I'm lazy to add quick change without code changes
+  // const migrator = orm.getMigrator();
+  // await migrator.up();
   return orm;
 };
 
